@@ -34,6 +34,7 @@ fn get_hex_from_rgb(r: f32, g: f32, b: f32) -> PyResult<String> {
 fn get_hsl_from_rgb(r: f32, g: f32, b: f32) -> PyResult<Vec<f32>> {
     let rgb = Rgb::from(r, g, b);
     Ok(rgb.to_hsl())
+}
 
 /// A Python module implemented in Rust.
 #[pymodule]
