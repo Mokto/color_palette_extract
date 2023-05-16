@@ -1,6 +1,6 @@
 from color_palette_extract import color_palette_extract
 
-f = open("test/instagram.png", mode="rb")
+f = open("test/instagram.svg", mode="rb")
 file_bytes = f.read()
 result = color_palette_extract.extract_from_bytes(file_bytes)
 print(result)
