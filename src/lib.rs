@@ -5,12 +5,17 @@ use colors_transform::{Color, Rgb};
 use pyo3::wrap_pyfunction;
 
 #[pyfunction]
-fn extract_from_bytes(data: &PyBytes) -> PyResult<Vec<Vec<f32>>> {
+fn extract_from_bytes(
+    data: &PyBytes, 
+    has_alpha: bool, 
+    down_size_to: f64,
+    small_bucket: f64,
+) -> PyResult<Vec<Vec<f32>>> {
     let mut result: Vec<Vec<f32>> = Vec::new();
 
     let img = image::load_from_memory(data.as_bytes()).unwrap();
 
-    let colors = dominant_color::get_colors(img.to_rgb8().into_raw().as_slice(), false);
+    let colors = dominant_color::get_colors_with_config(img.to_rgb8().into_raw().as_slice(), false, , 224.0 * 224.0, 0.01);
 
     let mut group: Vec<f32> = Vec::new();
     for color in colors {
