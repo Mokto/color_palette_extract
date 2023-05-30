@@ -15,7 +15,7 @@ fn extract_from_bytes(
 
     let img = image::load_from_memory(data.as_bytes()).unwrap();
 
-    let colors = dominant_color::get_colors_with_config(img.to_rgb8().into_raw().as_slice(), false, , 224.0 * 224.0, 0.01);
+    let colors = dominant_color::get_colors_with_config(img.to_rgb8().into_raw().as_slice(), has_alpha, down_size_to, small_bucket);
 
     let mut group: Vec<f32> = Vec::new();
     for color in colors {
